@@ -1,12 +1,13 @@
+
 # Movies App
 
-## Introdução
+## Introduction
 
-Para aplicar os conceitos do Clean Architecture e SOLID, eu estruturaria o projeto utilizando a arquitetura limpa (Clean Architecture) e o gerenciamento de estado com Bloc. Esta abordagem me permitiria criar um código mais modular, escalável e fácil de testar.
+To apply the concepts of Clean Architecture and SOLID principles, I would structure the project using Clean Architecture and state management with Bloc. This approach would allow me to create a more modular, scalable, and testable codebase.
 
-## Estrutura do Projeto
+## Project Structure
 
-Eu estruturaria o projeto da seguinte forma:
+I would structure the project as follows:
 
 ```
 lib/
@@ -33,37 +34,37 @@ lib/
 └── main.dart
 ```
 
-## Detalhamento da Estrutura
+## Structure Details
 
 ### 1. Core
 
-Para o diretório `core`, eu colocaria código genérico e utilitário que pode ser reutilizado em várias partes do aplicativo.
+In the `core` directory, I would place generic and utility code that can be reused across different parts of the app.
 
-- **errors**: Eu definiria classes de erro/exceção.
-- **usecases**: Eu implementaria casos de uso comuns.
-- **utils**: Eu utilizaria utilitários e funções auxiliares.
-- **widgets**: Eu criaria widgets reutilizáveis.
+- **errors**: I would define error/exception classes.
+- **usecases**: I would implement common use cases.
+- **utils**: I would add utilities and helper functions.
+- **widgets**: I would create reusable widgets.
 
 ### 2. Features
 
-Para cada funcionalidade do aplicativo, eu criaria um módulo separado que segue a arquitetura limpa.
+For each feature of the app, I would create a separate module that follows Clean Architecture principles.
 
-- **data**: Eu implementaria a lógica de dados.
-  - **datasources**: Eu implementaria as fontes de dados (APIs, locais, etc.).
-  - **models**: Eu criaria modelos de dados que representam a estrutura de dados usada nas fontes de dados.
-  - **repositories**: Eu implementaria os repositórios que concretizam os contratos definidos na camada de domínio.
+- **data**: This is where I would implement data logic.
+  - **datasources**: I would implement data sources (APIs, local sources, etc.).
+  - **models**: I would create data models representing the data structure used by the data sources.
+  - **repositories**: I would implement repositories that concretely realize the contracts defined in the domain layer.
 
-- **domain**: Eu colocaria a lógica de negócio pura.
-  - **entities**: Eu criaria as entidades que são objetos de negócio do domínio.
-  - **repositories**: Eu definiria os contratos que especificam os métodos que a camada de dados deve implementar.
-  - **usecases**: Eu encapsularia a lógica de aplicação em casos de uso.
+- **domain**: This is where I would put the pure business logic.
+  - **entities**: I would create entities that represent business objects in the domain.
+  - **repositories**: I would define the contracts specifying the methods that the data layer must implement.
+  - **usecases**: I would encapsulate the application logic into use cases.
 
-- **presentation**: Eu colocaria o código de apresentação (UI) e gerenciamento de estado.
-  - **blocs**: Eu gerenciaria o estado utilizando Blocs e Cubits.
-  - **pages**: Eu criaria as páginas da interface do usuário.
-  - **widgets**: Eu criaria widgets específicos da funcionalidade.
+- **presentation**: This is where I would handle the UI code and state management.
+  - **blocs**: I would manage state using Blocs and Cubits.
+  - **pages**: I would create user interface pages.
+  - **widgets**: I would create feature-specific widgets.
 
-## Exemplo de Implementação
+## Implementation Example
 
 ### 1. Data Layer
 
@@ -81,7 +82,7 @@ abstract class MovieRemoteDatasource {
 class MovieRemoteDatasourceImpl implements MovieRemoteDatasource {
   @override
   Future<List<MovieModel>> getMovies() {
-    // Implementação da chamada de API para obter filmes
+    // API call implementation to fetch movies
   }
 }
 ```
@@ -119,7 +120,7 @@ class Movie {
   final int id;
   final String title;
   final String overview;
-  // Outros atributos
+  // Other attributes
 
   Movie({
     required this.id,
@@ -229,9 +230,9 @@ class MoviePage extends StatelessWidget {
 }
 ```
 
-## Injeção de Dependências
+## Dependency Injection
 
-Eu usaria o pacote `get_it` para gerenciar as dependências.
+I would use the `get_it` package to manage dependencies.
 
 ```dart
 // lib/injection_container.dart
@@ -264,9 +265,9 @@ void init() {
 }
 ```
 
-## Configuração no `main.dart`
+## Setup in `main.dart`
 
-Eu configuraria a injeção de dependências no arquivo `main.dart`.
+I would configure dependency injection in the `main.dart` file.
 
 ```dart
 // lib/main.dart
@@ -301,4 +302,4 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-Ao seguir essa estrutura, eu conseguiria um projeto organizado e modular, facilitando a manutenção e a expansão do aplicativo conforme necessário.
+By following this structure, I would achieve a well-organized and modular project, making it easier to maintain and expand the app as needed.
